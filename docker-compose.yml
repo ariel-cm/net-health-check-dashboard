@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  dashboardmonitor:
+    image: ${DOCKER_REGISTRY-}dashboardmonitor
+    build:
+      context: .
+      dockerfile: src/DashboardMonitor/Dockerfile
+    ports:
+    - "8080:80"
+    depends_on:
+      - "samplewebapi"
+
+  samplewebapi:
+    image: ${DOCKER_REGISTRY-}samplewebapi
+    build:
+      context: .
+      dockerfile: src/SampleWebApi/Dockerfile
+    ports:
+    - "8081:80"
+
